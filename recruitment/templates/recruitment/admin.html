@@ -98,11 +98,11 @@
 											<b>Applicataion Date</b>
 										</td>
 										<td>
-											<input type="date" id="datepicker" placeholder="Date">
+											<input type="date" name="datechk" class="datechk">
 										</td>
 										<td><b>Before</b></td>
 										<td>
-											<input type="date" id="datepicker" placeholder="Date">
+											<input type="date" name="datechk" class="datechk">
 										</td>
 									</tr>
 									<tr style="border: none; background-color: transparent;">
@@ -192,7 +192,33 @@
 			<script src="{% static 'assets/js/main.js' %}"></script>
 
 
-			
+
+			<!-- For Cross-Browser Date Picker -->
+			<script>
+
+								var dateClass='.datechk';
+				$(document).ready(function ()
+				{
+				if (document.querySelector(dateClass).type !== 'date')
+				{
+					var oCSS = document.createElement('link');
+					oCSS.type='text/css'; oCSS.rel='stylesheet';
+					oCSS.href='//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css';
+					oCSS.onload=function()
+					{
+					var oJS = document.createElement('script');
+					oJS.type='text/javascript';
+					oJS.src='//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js';
+					oJS.onload=function()
+					{
+						$(dateClass).datepicker();
+					}
+					document.body.appendChild(oJS);
+					}
+					document.body.appendChild(oCSS);
+				}
+				});
+			</script>
 
 	</body>
 </body>

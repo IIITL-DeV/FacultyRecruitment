@@ -4,7 +4,6 @@ import  re
 from recruitment.models import *
 from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponse, HttpResponseRedirect
-
 def handle_uploaded_file(f, application_number, name):
     with open(f'uploads/{application_number}/{name}', 'wb+') as destination:
         for chunk in f.chunks():
@@ -38,7 +37,7 @@ def home(request):
 
 def admin(request):
     if(request.user.is_superuser != 1):
-        return HttpResponseRedirect('/')
+        return render(request, 'recruitment/index.html',{})
     admin_data = {}
     appli_data = []
     for i in list(General.objects.all()):
